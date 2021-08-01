@@ -13,7 +13,7 @@ Może rezerwować i anulować terminy dla swoich aut
 
 Maniek
 maniek@maniek.pl
-maniek@maniek
+maniekmaniek
 
 Może dodawać swoje auta
 Może rezerwować i anulować terminy dla swoich aut
