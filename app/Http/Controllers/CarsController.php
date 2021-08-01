@@ -35,7 +35,7 @@ class CarsController extends Controller
             'created_by' =>$zalogowany['id']
         ]);
 
-    	 return redirect('listcars');
+    	 return redirect('cars');
     }
 
     public function AddVisit($visit_id, ListCarsRepository $ListcarsRepo){
