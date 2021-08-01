@@ -1,62 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# WarsztatUManka
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Docelowo apka FullStackowa
 
-## About Laravel
+Dane do logowania (oczywiście po odpaleniu seederów) :
+Admin
+admin@admin.pl
+admin@admin
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Może dodawać nowe terminy wizyt
+Może dodawać swoje auta
+Może rezerwować i anulować terminy dla swoich aut
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Maniek
+maniek@maniek.pl
+maniek@maniek
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Może dodawać swoje auta
+Może rezerwować i anulować terminy dla swoich aut
 
-## Learning Laravel
+Reszta intuicyjna
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+****API*****************************************************
 
-## Laravel Sponsors
+****LISTA AUT****
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+GET .../api/cars
 
-### Premium Partners
+Zwrócona lista samochodów dodanych do systemu:
+ {
+        "id": 1,
+        "carPlateNumber": "niedostępny",
+        "brand": "",
+        "modell": "",
+        "yearOfProduction": 0,
+        "created_by": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "carPlateNumber": "dostępny",
+        "brand": "",
+        "modell": "",
+        "yearOfProduction": 0,
+        "created_by": 1,
+        "created_at": null,
+        "updated_at": null
+    }
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+****DODAWANIE AUTA****    
+ POST .../api/cars
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Format danych do zapisu w DB    
+    {
+"carPlateNumber": "EOP RAV4",
+"brand": "Toyota",
+"modell": "RAV 4",
+"yearOfProduction": 2021,
+"created_by": 1
+}
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+****EDYCJA DANYCH AUTA****
+PUT   /api/cars/{id}
 
-## Security Vulnerabilities
+Format danych do zapisu w DB    
+    {
+"carPlateNumber": "EOP RAV4",
+"brand": "Toyota",
+"modell": "RAV 4",
+"yearOfProduction": 2021,
+"created_by": 1
+}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+****KASOWANIE AUTA****
+DELETE   /api/cars/{id}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Nalezy wskazać punkt kasacji :-)
+
+
+****LISTA WSZYSTKICH WIZYT****
+GET   /api/visits
+
+
+{
+        "id": 1,
+        "date": "2121-06-15",
+        "time": "10:15:00",
+        "user_id": 0,
+        "car_id": 2,
+        "comments": "",
+        "created_at": null,
+        "updated_at": "2021-07-30T10:30:53.000000Z"
+    },
+    {
+        "id": 2,
+        "date": "2121-06-16",
+        "time": "10:15:00",
+        "user_id": 3,
+        "car_id": 6,
+        "comments": "",
+        "created_at": null,
+        "updated_at": "2021-07-30T10:31:51.000000Z"
+    },
+    {
+        "id": 3,
+        "date": "2121-06-16",
+        "time": "11:15:00",
+        "user_id": 0,
+        "car_id": 2,
+        "comments": "...",
+        "created_at": null,
+        "updated_at": "2021-07-30T21:21:59.000000Z"
+    },
+    {
+        "id": 4,
+        "date": "2021-08-15",
+        "time": "09:00:00",
+        "user_id": 0,
+        "car_id": 2,
+        "comments": "...",
+        "created_at": "2021-07-30T21:46:39.000000Z",
+        "updated_at": "2021-07-30T21:46:39.000000Z"
+    },
+
+
+
+****REZERWACJA TERMINU car_id > 2 ****
+
+PUT   /api/visits/{id}
+
+{
+"user_id": "2",
+"car_id": "3",
+"comments": "Uwagi"
+}
+
+
+****ANULOWANIE REZERWACJI car_id = 1 -> termin niedostępny  car_id = 2 -> termin dostępny ****
+
+PUT   /api/visits/{id}
+{
+"user_id": "0",
+"car_id": "2",
+"comments": "..."
+}
+
+
+****DODAWANIE TERMINU****
+
+POST   /api/calendar
+
+{
+"date": "2021-08-15",
+"time": "10:00",
+"user_id": "0",
+"car_id": "2",
+"comments": "..."
+}
+
+
+
+****USUWANIE TERMINU****
+
+DELETE   /api/calendar/{id}
