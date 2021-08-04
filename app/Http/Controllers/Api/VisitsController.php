@@ -11,26 +11,18 @@ use App\Repositories\VisitsRepository;
 
 class VisitsController extends Controller
 {
-    public function index(VisitsRepository $visitsRepo){
-
-        $visits = $visitsRepo->getAll();
-
-        return $visits->toJson();
+    public function index(){
+        return Visit::all();
     }
 
 
-    // move to repository
-    public function update(Request $request, visit $visit){
-
-        $data = $request->all();
+    public function update(Request $request, Visit $visit){
 
         // add some validation
-        $visit->update([
-            'user_id'=>$data['user_id'],
-            'car_id'=>$data['car_id'],
-            'comments'=>$data['comments']
-        ]);
+        $visit->update($request->all());
 
-        $visit->Save();
+        return response()->json([
+            'updated' => true
+        ],status:200);
     }
 }

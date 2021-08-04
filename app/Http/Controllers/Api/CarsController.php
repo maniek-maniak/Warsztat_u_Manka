@@ -11,50 +11,35 @@ use App\Repositories\CarsRepository;
 
 class CarsController extends Controller
 {
-    public function index(CarsRepository $CarsRepo){
-
-        $cars = $CarsRepo->getAll();
-
-        return $cars->toJson();
+    public function index(Car $cars){
+        return Car::all();
     }
 
 
-    public function store(Request $request, CarsRepository $CarsRepo){
+    public function store(Request $request, Car $Car){
 
-        $data = $request->all();
+        Car::create($request->all());
 
-        $CarsRepo->create([
-            'carPlateNumber'=>$data['carPlateNumber'],
-            'brand'=>$data['brand'],
-            'modell'=>$data['modell'],
-            'yearOfProduction'=>$data['yearOfProduction'],
-            'created_by' =>$data['created_by']
-        ]);
+        return response()->json([
+            'created' => true
+        ],status:201);
     }
 
 
-    // move to repository
     public function update(Request $request, Car $car){
 
-        $data = $request->all();
-
         // add some validation
-        $car->update([
-            'carPlateNumber'=>$data['carPlateNumber'],
-            'brand'=>$data['brand'],
-            'modell'=>$data['modell'],
-            'yearOfProduction'=>$data['yearOfProduction'],
-            'created_by' =>$data['created_by']
-        ]);
+        Car::update($request->all());
 
-        $car->Save();
+        return response()->json([
+            'updated' => true
+        ],status:200);
     }
 
-    // move to repository
+
     public function destroy( Car $Car){
 
-        $Car->delete();
+        Car::delete();
     }
-
 
 }

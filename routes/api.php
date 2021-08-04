@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\VisitsController;
 use App\Http\Controllers\Api\CalendarController;
 use App\Http\Controllers\Api\CarsController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,14 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 
-// Route::middleware(middleware: 'auth:sanctum')->group(function(){
+Route::post('logout', [AuthController::class, 'logout']);
+
+// Route::middleware('auth:sanctum')->group(function(){
 //     Route::get('user', [AuthController::class, 'test']);
+// });
+
+// Route::middleware('auth:sanctum')->get('user', function (Request $request) {
+//     return $request->user();
 // });
 
 
