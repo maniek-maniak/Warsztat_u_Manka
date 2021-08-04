@@ -37,16 +37,17 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken;
+        return $user->createToken('token-name', ['server:update'])->plainTextToken;
+        // $token = $user->createToken('token')->plainTextToken;
 
-        $cookie = cookie('jwt', $token, 30);
+        // $cookie = cookie('jwt', $token, 30);
 
-        return response(['message'=>$token ])->withcookie($cookie);
+        // return response(['message'=>$token ])->withcookie($cookie);
     }
 
-    public function test(){
-        return $user = Auth::user();
-        
+    public function test(Request $request){
+        //return $user = Auth::user();
+        return $request->user()->tokenCan('server:update');
   
     }
 }
