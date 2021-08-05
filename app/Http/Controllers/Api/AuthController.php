@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use App\Models\User;
 
 use App\Repositories\UserRepository;
@@ -39,14 +40,34 @@ class AuthController extends Controller
         $user = Auth::user();
         $token = $user->createToken('token')->plainTextToken;
 
-        $cookie = cookie('jwt', $token, 30);
+        return $token =  $user->createToken('token', ['server:update'])->plainTextToken;
 
-        return response(['message'=>$token ])->withcookie($cookie);
+        //$cookie = cookie('jwt', $token, 30);
+
+        //return response(['message'=>$token ])->withcookie($cookie);
+       
     }
 
-    public function test(){
-        return $user = Auth::user();
+    public function test(Request $request){
+
+        //return $val = Cookie::get('jwt');
+        //return $ipAddress = $request->ip();
+        //return $user = $request->user();
+        //return $cos = Token::get('token');
         
-  
+        // $user = Auth::user();
+
+        // if ($val->tokenCan('server:update')) {
+        //     return 'OKI';
+        // }
+
+        return user::all();
+        
+    }
+
+    public function logout(){
+       
+        $cookie = Cookie::forget('jwt');
+        return response(['message'=>'oki'])->withcookie($cookie);
     }
 }
