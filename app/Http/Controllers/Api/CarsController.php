@@ -12,7 +12,7 @@ use App\Repositories\CarsRepository;
 class CarsController extends Controller
 {
     public function index(Car $cars){
-        return Car::all();
+        return Car::paginate(10);
     }
 
 
