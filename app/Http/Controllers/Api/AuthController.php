@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\User;
@@ -35,13 +34,10 @@ class AuthController extends Controller
           $credentials = $request->only('email','password');  // na skruty => return $token = JWTAuth::attempt($userData);
 
         if (!$token = JWTAuth::Attempt($credentials)){
-//        if (!$token = auth()->attempt($credentials)){    // zwraca 1
             return response ([
                 'message' => 'Invalid credentials!'
             ], status: 401);  //HTTP_UNAUTHORIZED
         }
-
-//        $user = JWTAuth::user();
 
         return $token;  // jeśli to zakomentuję utworzone zostanie cookie
         

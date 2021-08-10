@@ -12,7 +12,7 @@ use App\Repositories\VisitsRepository;
 class VisitsController extends Controller
 {
     public function index(){
-        return Visit::all();
+        return Visit::paginate(10);
     }
 
 
