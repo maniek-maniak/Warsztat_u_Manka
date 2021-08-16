@@ -11,7 +11,7 @@ use App\Repositories\CarsRepository;
 
 class CarsController extends Controller
 {
-    public function index(Car $cars){
+    public function index(){
         return Car::all();
     }
 

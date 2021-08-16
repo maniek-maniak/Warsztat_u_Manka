@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         $user = Auth::user();
         return $user->createToken('token-name', ['server:update'])->plainTextToken;
-        // $token = $user->createToken('token')->plainTextToken;
+        //return $token = $user->createToken('token')->plainTextToken;
 
         // $cookie = cookie('jwt', $token, 30);
 
@@ -47,7 +47,7 @@ class AuthController extends Controller
 
     public function test(Request $request){
         //return $user = Auth::user();
-        return $request->user()->tokenCan('server:update');
-  
+        //return $request->user()->tokenCan('server:update');
+        return "oki";
     }
 }
