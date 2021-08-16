@@ -11,9 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +34,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'created_at',
+        'updated_at',
         'password',
         'remember_token',
     ];

@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Visit;
-
 use App\Repositories\CalendarRepository;
 
 class CalendarController extends Controller
 {
-    public function index(Visit $Visit){
+    /****************nie bedę na chwilę obecną używał tej metody ***********************************/
+    
+    // public function index(Visit $Visit){
 
-        return Visit::all();
-    }
+    //     return Visit::paginate(10);
+    // }
 
 
     public function store(Request $request, Visit $Visit){

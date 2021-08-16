@@ -11,8 +11,8 @@ use App\Repositories\CarsRepository;
 
 class CarsController extends Controller
 {
-    public function index(){
-        return Car::all();
+    public function index(Car $cars){
+        return Car::paginate(10);
     }
 
 
