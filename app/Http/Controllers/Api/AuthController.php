@@ -60,6 +60,8 @@ class AuthController extends Controller
         // $cookie = cookie('jwt', $token, 30);
 
         // return response(['message'=>$token ])->withcookie($cookie);
+
+        // to tylko test
     }
 
 }
