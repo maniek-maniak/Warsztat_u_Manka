@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 
 use App\Models\Car;
+use App\Repositories\CarsRepository;
 
 class CheckCarOwner
 {
@@ -21,6 +22,7 @@ class CheckCarOwner
 
 
         $car_id = $request->route()->car_id;
+        //$car = $CarsRepo->getCar($car_id);
     
         $user_id = auth()->user()->id;
 
