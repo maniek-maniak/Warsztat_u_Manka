@@ -46,7 +46,12 @@ Route::middleware(['auth'])->name('dashboard')->group(function () {
 
     Route::get('/calendar/cancel/{visit_id}', [CalendarController::class, 'cancel']);
 
-    Route::get('/calendar/{visit_id}/{car_id}', [CalendarController::class, 'edit']);
+
+    Route::middleware(['CheckCarOwner'])->group(function(){
+        Route::get('/calendar/{visit_id}/{car_id}', [CalendarController::class, 'edit']);    
+    });
+    
+
 
 
     Route::get('/visits', [VisitsController::class, 'index']);
