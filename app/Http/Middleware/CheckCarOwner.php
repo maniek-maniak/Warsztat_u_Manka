@@ -20,12 +20,11 @@ class CheckCarOwner
      */
     public function handle(Request $request, Closure $next)
     {
-
-        $my_car = false;
         $car_id = $request->route()->car_id;
+        $visit_id = $request->route()->visit_id;
         $zalogowany = Auth::user();
-
         $listCars = $zalogowany['cars'];
+        $my_car = false;
         foreach ($listCars as $car){
             if ($car['id'] == $car_id){
                 $my_car = true;
@@ -33,10 +32,7 @@ class CheckCarOwner
         }
 
         if (!$my_car){
-            //
-            //$request->route()->setParameter('car_id', '6');
-            //$request->route('/cars');
-            //return $next(view('layouts/cars.list', ["listCars" => $listCars]));
+            return redirect('/cars/'.$visit_id);
         }
         return $next($request);
     }
