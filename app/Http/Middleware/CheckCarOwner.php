@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 use App\Models\Car;
-use App\Repositories\CarsRepository;
 
 class CheckCarOwner
 {
@@ -20,15 +21,22 @@ class CheckCarOwner
     public function handle(Request $request, Closure $next)
     {
 
-
+        $my_car = false;
         $car_id = $request->route()->car_id;
-        //$car = $CarsRepo->getCar($car_id);
-    
-        $user_id = auth()->user()->id;
+        $zalogowany = Auth::user();
 
-        if ($user_id =='1'){
-        //if ($request->route()->car_id == '3') {
-            $request->route()->setParameter('car_id', '6');
+        $listCars = $zalogowany['cars'];
+        foreach ($listCars as $car){
+            if ($car['id'] == $car_id){
+                $my_car = true;
+            }
+        }
+
+        if (!$my_car){
+            //
+            //$request->route()->setParameter('car_id', '6');
+            //$request->route('/cars');
+            //return $next(view('layouts/cars.list', ["listCars" => $listCars]));
         }
         return $next($request);
     }
