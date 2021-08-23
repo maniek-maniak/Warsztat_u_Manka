@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
 
 
         'CheckCarOwner' => \App\Http\Middleware\CheckCarOwner::class,
+        'ApiCheckCarOwner' => \App\Http\Middleware\ApiCheckCarOwner::class,
     ];
 }

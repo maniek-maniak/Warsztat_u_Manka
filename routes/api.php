@@ -28,9 +28,10 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 
 
-
 Route::apiResource('calendar', CalendarController::class);
 
 Route::apiResource('cars', CarsController::class);
 
-Route::apiResource('visits', VisitsController::class);
+Route::middleware(['ApiCheckCarOwner'])->group(function(){
+    Route::apiResource('visits', VisitsController::class);
+});
